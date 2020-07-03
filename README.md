@@ -10,6 +10,9 @@ A semi-interactive script to install Arch Linux on a fully encrypted disk create
     - Set hooks and modules dynamically
     - Set GRUB_CMDLINE_LINUX_DEFAULT dynamically
 - Create ssh keys and keep them safe
+- Desktop: KDE Plasma
+- Display Manager: sddm
+- UFW firewall rules
 - FAI: Except a few questions (passwords, passphrases), fully automatic installer
 - la la la la la
 
