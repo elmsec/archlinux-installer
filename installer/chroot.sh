@@ -3,13 +3,6 @@
 . ./installer/files/install.config
 . ./installer/helpers.sh
 
-# exit when any command fails
-set -e
-
-# keep track of the last executed command
-trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
-# echo an error message before exiting
-trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
 # UUIDs
 EFI_UUID=$(blkid -o value -s UUID $EFI_PART)
@@ -171,9 +164,13 @@ chattr +i "$SSH_DIR"
 
 # SYSTEM SERVICES
 #################
+USER_SYSTEMD="/home/$USERNAME/.config/systemd/user"
 
 # enable network services
 systemctl enable NetworkManager
 
 # enable sddm display manager for KDE Plasma
 systemctl enable sddm
+
+# enable ssh-agent so it asks for your passphrase only once
+ln -s "$USER_SYSTEMD/ssh-agent.service" "$USER_SYSTEMD/default.target.wants/ssh-agent.service"
