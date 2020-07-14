@@ -1,6 +1,5 @@
 # `Encrypted Arch`: *Encrypted Arch Linux Installer*
-A semi-interactive script to install Arch Linux on a fully encrypted disk created by using LVM on LUKS.
-
+**Encrypted Arch** is a semi-interactive script to install Arch Linux over SSH to a fully encrypted disk created using LVM on LUKS. 
 
 ## Highlights
 - Full encryption
