@@ -67,7 +67,7 @@ cat ./installer/files/pacman.mirrorlist > /etc/pacman.d/mirrorlist
 pacman -Syy
 
 # install essential packages
-pacman -S --noconfirm grub efibootmgr sudo lvm2 man networkmanager xorg-server xorg-xinit lib32-mesa mesa sddm plasma plasma-nm bash-completion vlc yakuake okular ark firefox gimp dolphin dolphin-plugins spectacle ffmpeg kbackup kcron kapman kdialog konsole zip unzip unrar openssh kdegraphics-thumbnailers ffmpegthumbs feh postgresql gcc packagekit-qt5 keepassxc gwenview kwrite code git python-pip x11-ssh-askpass ufw vim
+pacman -S --noconfirm grub efibootmgr sudo lvm2 man bat networkmanager xorg-server xorg-xinit lib32-mesa mesa sddm plasma plasma-nm bash-completion vlc yakuake okular ark firefox gimp dolphin dolphin-plugins spectacle ffmpeg kbackup kcron kapman kdialog konsole zip unzip unrar openssh kdegraphics-thumbnailers ffmpegthumbs feh postgresql gcc packagekit-qt5 keepassxc gwenview kwrite code git python-pip x11-ssh-askpass ufw vim
 
 
 
