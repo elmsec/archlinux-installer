@@ -87,14 +87,14 @@ mkinitcpio -p linux
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
 # edit GRUB_CMDLINE_LINUX_DEFAULT
-CMDLINE_DEFAULTS="cryptdevice=UUID=$LVM_UUID:cryptlvm root=/dev/volumees/root resume=/dev/volumees/swap"
+CMDLINE_DEFAULTS="cryptdevice=UUID=$LVM_UUID\:cryptlvm root=/dev/volumees/root resume=/dev/volumees/swap"
 
 if [ "$COMPUTER" = 'desktop' ]; then
     EXTRA_PACKAGES="xf86-video-amdgpu amd-ucode vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver"
-    CMDLINE_DEFAULTS="$CMDLINE_DEFAULTS radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1"
+    CMDLINE_DEFAULTS="$CMDLINE_DEFAULTS radeon.cik_support=0 amdgpu.cik_support=1 radeon.si_support=0 amdgpu.si_support=1 quiet"
 else
     EXTRA_PACKAGES="xf86-video-intel intel-ucode"
-    CMDLINE_DEFAULTS="$CMDLINE_DEFAULTS l1tf=full,force mds=full,nosmt mitigations=auto,nosmt nosmt=force"  # intel security fix
+    CMDLINE_DEFAULTS="$CMDLINE_DEFAULTS l1tf=full,force mds=full,nosmt mitigations=auto,nosmt nosmt=force quiet"  # intel security fix
 fi
 
 # edit GRUB_CMDLINE_LINUX_DEFAULTS in /etc/default/grub
@@ -171,6 +171,9 @@ systemctl enable NetworkManager
 
 # enable sddm display manager for KDE Plasma
 systemctl enable sddm
+
+# copy ssh-agent.service
+cp /installer/files/ssh-agent.service "$USER_SYSTEMD/"
 
 # enable ssh-agent so it asks for your passphrase only once
 ln -s "$USER_SYSTEMD/ssh-agent.service" "$USER_SYSTEMD/default.target.wants/ssh-agent.service"
