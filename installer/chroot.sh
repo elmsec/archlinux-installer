@@ -164,7 +164,8 @@ chattr +i "$SSH_DIR"
 
 # SYSTEM SERVICES
 #################
-USER_SYSTEMD="/home/$USERNAME/.config/systemd/user"
+CONFIG_DIR="/home/$USERNAME/.config"
+USER_SYSTEMD="$CONFIG_DIR/systemd/user"
 
 # enable network services
 systemctl enable NetworkManager
@@ -177,3 +178,6 @@ cp /installer/files/ssh-agent.service "$USER_SYSTEMD/"
 
 # enable ssh-agent so it asks for your passphrase only once
 ln -s "$USER_SYSTEMD/ssh-agent.service" "$USER_SYSTEMD/default.target.wants/ssh-agent.service"
+
+# take ownership
+chown -R "$USERNAME:$USERNAME" "$CONFIG_DIR"
